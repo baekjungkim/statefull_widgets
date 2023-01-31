@@ -5,7 +5,9 @@ void main() {
 }
 
 class App extends StatefulWidget {
-  const App({super.key});
+  const App({
+    super.key,
+  });
 
   @override
   State<App> createState() => _AppState();
@@ -14,8 +16,16 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   int counter = 0;
 
-  void onClicked() {
-    counter = counter + 1;
+  void onPlusClicked() {
+    setState(() {
+      counter++;
+    });
+  }
+
+  void onMinusClicked() {
+    setState(() {
+      counter--;
+    });
   }
 
   @override
@@ -39,11 +49,22 @@ class _AppState extends State<App> {
                   fontSize: 30,
                 ),
               ),
-              IconButton(
-                onPressed: onClicked,
-                icon: const Icon(
-                  Icons.add_box_rounded,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: onMinusClicked,
+                    icon: const Icon(
+                      Icons.indeterminate_check_box_rounded,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: onPlusClicked,
+                    icon: const Icon(
+                      Icons.add_box_rounded,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
